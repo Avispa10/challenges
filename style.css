@@ -1,0 +1,19 @@
+body {
+    background: url(/Users/ignacio/Desktop/Nacho/WEB/Challenges/profile-card-component-main/images/bg-pattern-top.svg),
+    url(/Users/ignacio/Desktop/Nacho/WEB/Challenges/profile-card-component-main/images/bg-pattern-bottom.svg),
+    hsl(185, 75%, 39%);
+    text-align: center;
+}
+
+.profile_card {
+    width: 25em;
+    height: 25em;
+    margin: 20% auto;
+    border-radius: 10%;
+    background-color: chartreuse;
+}
+ .top_BGcard {
+     height: 50%;
+     background-image: url(/Users/ignacio/Desktop/Nacho/WEB/Challenges/profile-card-component-main/images/bg-pattern-card.svg);
+ }
+
