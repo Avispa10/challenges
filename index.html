@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
   
   <title>Frontend Mentor | Profile card component</title>
 
@@ -13,20 +15,28 @@
 <body style="background-image: url(images/bg-pattern-top.svg)">
   <div class="profile_card">
     <div class="top_BGcard"></div>
-    <img src="">
+    <img src="images/image-victor.jpg">
     <div class="card_profile_info">
-    Victor Crest
-    26
-    London
+    <h1>Victor Crest <span>26</span></h1>
+    <h2>London</h2>
    <hr>
-    80K
-    Followers
-  
-    803K
-    Likes
-  
-    1.4K
-    Photos
+   <table>
+    <thead>
+    <tr>
+    <th>80k</th>
+    <th>803k</th>
+    <th>1.4K</th>   
+  </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Followers</td>
+      <td>Likes</td>
+      <td>Photos</td>
+    </tr>
+  </tbody>
+   </table>
+    
     
     </div>
   </div>
