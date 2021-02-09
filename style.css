@@ -1,19 +1,77 @@
 body {
-    background: url(/Users/ignacio/Desktop/Nacho/WEB/Challenges/profile-card-component-main/images/bg-pattern-top.svg),
-    url(/Users/ignacio/Desktop/Nacho/WEB/Challenges/profile-card-component-main/images/bg-pattern-bottom.svg),
+    background: url(/Users/ignacio/Desktop/Nacho/WEBdevelopment/challenges/myProjects-main/images/bg-pattern-top.svg),
+    url(/Users/ignacio/Desktop/Nacho/WEBdevelopment/challenges/myProjects-main/images/bg-pattern-bottom.svg),
     hsl(185, 75%, 39%);
     text-align: center;
 }
 
 .profile_card {
-    width: 25em;
-    height: 25em;
+    position: relative;
+    width: 380px;
+    height: 400px;
     margin: 20% auto;
-    border-radius: 10%;
-    background-color: chartreuse;
+    border-radius: 5%;
+    background-color: white;
+    overflow: hidden;
+    
 }
- .top_BGcard {
-     height: 50%;
-     background-image: url(/Users/ignacio/Desktop/Nacho/WEB/Challenges/profile-card-component-main/images/bg-pattern-card.svg);
+ .top_BGcard { 
+    height: 150px;
+    background: url(/Users/ignacio/Desktop/Nacho/WEB_development/challenges/myProjects-main/images/bg-pattern-card.svg);
+ }
+ img {
+     position: absolute;
+     left: 140px;
+     top: 100px;
+     border-radius: 50%;
+     border: 5px solid white;
  }
 
+ .card_profile_info
+ {
+     color: hsl(229, 23%, 23%)
+ }
+
+ h1 {
+     margin: 80px auto 10px;
+     font-size: 18px;
+     font-family: 'Kumbh Sans', sans-serif;
+     font-weight: 700;
+     
+ }
+ span {
+    font-family: 'Kumbh Sans', sans-serif;
+    font-weight: 400;
+    color: gray;
+     
+ } 
+ h2 {
+    font-size: 16px;
+    font-family: 'Kumbh Sans', sans-serif;
+    font-weight: 400;
+    color: gray;
+ }
+
+ table {
+     font-family: 'Kumbh Sans', sans-serif;
+     margin: 20px auto;
+     text-align: center;
+     width: 360px;
+ }
+
+ th {
+     width: 33%;
+     height: 30px;
+     font-size: 18px;
+ }
+
+ td {
+     font-size: 12px;
+     color: gray;
+ }
+
+ hr {
+     margin-top: 20px;
+     border: none;
+     border-top: 0.1rem solid lightgray;
+ }
