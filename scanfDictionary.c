@@ -27,7 +27,7 @@ unsigned int hash(unsigned char *str)
     }
 
 //COUNT WORDS LOADED
-unsigned int size(void)
+/*unsigned int size(void)
 {
     // TODO
     unsigned int counter = 0;
@@ -42,7 +42,7 @@ unsigned int size(void)
     }
     printf("words: %u\n" , counter);
     return counter;
-}
+}*/
 
 
 int main (void){
@@ -52,7 +52,7 @@ int main (void){
     {
         return 1;
     }
-
+    unsigned int counter = 0;
     unsigned char *str = malloc(sizeof(char*));
 
     while (fscanf(file, "%s", str) != EOF)
@@ -60,11 +60,11 @@ int main (void){
       fscanf(file,"[ˆ\n]%s", str);
 
       node *n = malloc(sizeof(node));
-
+      
       if (n == NULL) {
           return 1;
       }
-
+      counter++;
       strcpy(n->word, (const char*)str);
       n->next = NULL;
 
@@ -89,7 +89,7 @@ int main (void){
 
     free(n);
     }
-    printf("qty of words loaded: %u\n", size());
+    printf("qty of words loaded: %u\n", counter);
     fclose(file);
     free(str);
     return 0;
