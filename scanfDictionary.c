@@ -1,96 +1,140 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+// Implements a dictionary's functionality
 
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <ctype.h>
+#include "dictionary.h"
+
+// Represents a node in a hash table
 typedef struct node
 {
-    char word[45];
+    char word[LENGTH + 1];
     struct node *next;
 }
 node;
 
-const int N = 961;
+// Number of buckets in hash table
+const unsigned int N = 961;
 
 // Hash table
 node *table[N];
+unsigned int counter = 0;
 
-// hash function
-unsigned int hash(unsigned char *str)
-    {
-        unsigned long hash = 5381;
-        int c;
-
-        while ((c = *str++))
-            hash = ((hash << 5) + hash) + c;
-
-      return hash % N;
-    }
-
-//COUNT WORDS LOADED
-unsigned int size(void)
+// Returns true if word is in dictionary, else false
+bool check(const char *word)
 {
-    // TODO
-    unsigned int counter = 0;
-    // itereate through each link list of the hash table
-    for ( int i = 0 ; i < N ; i++)
+    //get the word's hash
+    unsigned int hashIndex = hash(word);
+
+    node *trav = table[hashIndex];
+
+    while ( trav != NULL )
     {
-        //iterate through all nodes of each linked list
-        for ( node *tmp = table[i] ; tmp != NULL ; tmp = tmp->next )
-        {
-        counter++;
-        }
+       if ( strcasecmp( trav->word, word) == 0 )
+       {
+            return true;
+       }
+
+       else if ( strcasecmp (trav->word, word) != 0 )
+       {
+            trav = trav->next;
+       }
+
     }
-    printf("words: %u\n" , counter);
-    return counter;
+
+    return false;
+
 }
 
+// Hashes word to a number
+unsigned int hash(const char *word)
+    {
+        unsigned  hash = 5381;
+        int c;
 
-int main (void){
+        while ((c = tolower(*word++)))
+            hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+     return hash % N;
+   }
 
-     FILE *file = fopen("pset5/speller/dictionaries/small", "r");
+// Loads dictionary into memory, returning true if successful, else false
+bool load(const char *dictionary)
+{
+    // TODO
+   FILE *file = fopen("dictionaries/large", "r");
+
     if ( file == NULL)
     {
-        return 1;
+        return false;
     }
-
-    unsigned char *str = malloc(sizeof(char*));
+    char str[LENGTH + 1];
 
     while (fscanf(file, "%s", str) != EOF)
     {
-      fscanf(file,"[ˆ\n]%s", str);
-
       node *n = malloc(sizeof(node));
 
       if (n == NULL) {
-          return 1;
+
+          return false;
       }
 
-      strcpy(n->word, (const char*)str);
+      strcpy(n->word, str);
+
       n->next = NULL;
 
-      //printf("words : %s address: %p\n", n->word, n->word);
-
       unsigned int hashIndex = hash(str);
-      //printf("hash: %i\n", hashIndex);
 
-
-      if (table[hashIndex] != NULL)
+      if (table[hashIndex] == NULL)
       {
-          n->next = table[hashIndex];
           table[hashIndex] = n;
       }
 
       else
       {
+          n->next = table[hashIndex];
           table[hashIndex] = n;
       }
-
-     // printf("HashIndex: %i\n", hashIndex);
-
-    free(n);
+    counter++;
     }
-    printf("qty of words loaded: %u\n", size());
+
     fclose(file);
-    free(str);
-    return 0;
+    return true;
+}
+
+// Returns number of words in dictionary if loaded, else 0 if not yet loaded
+unsigned int size(void) {
+    if (counter > 0)
+    {
+        return counter;
     }
+
+    else
+    return 0;
+}
+
+// Unloads dictionary from memory, returning true if successful, else false
+bool unload(void)
+{
+    // TODO
+    for ( int i = 0 ; i > N ; i++)
+    {
+      node *trav = table[i];
+
+      if (trav == NULL)
+      {
+          return true;
+      }
+      else if ( trav->next == NULL)
+      {
+          free(trav);
+      }
+      else
+      {
+          trav = trav->next;
+      }
+    }
+    return true;
+}
